@@ -2,7 +2,7 @@ import os
 import httpx
 from mcp.server.fastmcp import FastMCP
 
-from roku_bridge import send_ecp_post, get_device_info
+from roku_bridge import send_ecp_post, get_device_info as fetch_device_info
 
 mcp = FastMCP("tv_control",
                instructions="Tools for controlling a Roku TV via ECP commands over the local network.")
@@ -124,7 +124,7 @@ async def list_apps() -> str:
 @mcp.tool()
 async def get_device_info() -> str:
     """Retrieves basic device information (model, software version, etc.) as XML."""
-    return await get_device_info()
+    return await fetch_device_info()
 
 @mcp.tool()
 async def power_on() -> str:
