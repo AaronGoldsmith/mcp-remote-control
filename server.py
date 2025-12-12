@@ -44,7 +44,7 @@ async def press_key(key_name: str) -> str:
     Args:
         key_name: The name of the key to press (e.g., Home, Select, VolumeUp). 
                   Common keys are Home, Back, Select, Up, Down, Left, Right.
-                  Special keys are: PowerOn, PowerOff, VolumeUp, VolumeDown, Mute
+                  Special keys are: PowerOn, PowerOff, VolumeUp, VolumeDown, VolumeMute
     """
     
     # ECP command structure for keypress: keypress/<KEY>
