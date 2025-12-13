@@ -31,11 +31,7 @@ async def send_ecp_post(command: str) -> bool:
 
 # For debugging
 async def get_device_info() -> str:
-    """Retrieves basic device information (model, software version, etc.) as XML.
-    
-    Args:
-        tv_ip: The IP address of the TV.
-    """
+    """Retrieves basic device information (model, software version, etc.) as XML."""
     url = f"http://{TV_IP}:{ECP_PORT}/query/device-info"
     
     try:

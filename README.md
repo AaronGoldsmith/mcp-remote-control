@@ -1,10 +1,19 @@
 # MCP Remote Control
 
-A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants and agentic systems to control Roku TVs on your local network using the External Control Protocol (ECP).
+
+![MCP Remote Control](cover_image.png)
+
+A [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server that enables AI assistants and agentic systems to control TVs on your local network.
+
+**Currently supports:** Roku TVs via the External Control Protocol (ECP).
 
 ## What is MCP?
 
-The Model Context Protocol is an open standard that allows AI models to securely interact with external tools and data sources. This server exposes Roku TV controls as MCP tools, enabling LLMs like Claude to control your TV through natural language commands.
+The Model Context Protocol is an open standard that allows AI models to securely interact with external tools and data sources. This server exposes TV controls as MCP tools, enabling LLMs like Claude to control your TV through natural language commands.
+
+## Architecture
+
+This project is designed with future extensibility in mind. The Roku-specific implementation is isolated in `roku_bridge.py`, separating the ECP protocol details from the MCP server layer. While the current implementation is Roku-specific, the structure provides a foundation for supporting additional TV brands and control protocols in the future.
 
 ## Why Use This?
 
@@ -37,7 +46,7 @@ Before using this server, you need to enable external control on your Roku TV:
 
 - **Python**: 3.12 or higher
 - **Network**: TV and computer must be on the same local network
-- **MCP Client**: An MCP-compatible client like [Claude Desktop](https://claude.ai/download), [Claude Code](https://github.com/anthropics/claude-code), or custom implementations
+- **MCP Client**: An MCP-compatible client like [Claude Desktop](https://claude.ai/download), [Claude Code](https://github.com/anthropics/claude-code), [Goose](https://block.github.io/goose/docs/getting-started/installation) or custom implementations
 
 ## Features
 
@@ -54,7 +63,7 @@ Before using this server, you need to enable external control on your Roku TV:
 1. **Clone the repository**:
    ```bash
    git clone <repository-url>
-   cd mcp_tv_control
+   cd mcp-remote-control
    ```
 
 2. **Install dependencies**:
@@ -81,7 +90,7 @@ Add this server to your Claude Desktop configuration file:
   "mcpServers": {
     "tv-control": {
       "command": "python",
-      "args": ["/absolute/path/to/mcp_tv_control/server.py"],
+      "args": ["/absolute/path/to/mcp-remote-control/server.py"],
       "env": {
         "HOST_IP": "192.168.1.100"
       }
