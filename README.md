@@ -60,23 +60,18 @@ Before using this server, you need to enable external control on your Roku TV:
 
 ### Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-   cd mcp-remote-control
-   ```
+The package is available on [PyPI](https://pypi.org/project/mcp-remote-control/).
 
-2. **Install dependencies**:
-   ```bash
-   pip install -e .
-   # or with uv:
-   uv pip install -e .
-   ```
+The easiest way to use this server is via [uvx](https://docs.astral.sh/uv/guides/tools/), which runs the package directly from PyPI without requiring a separate install step:
 
-3. **Set your TV's IP address**:
-   ```bash
-   export HOST_IP=192.168.1.100  # Replace with your actual TV IP
-   ```
+```bash
+uvx mcp-remote-control
+```
+
+Alternatively, install globally with pip:
+```bash
+pip install mcp-remote-control
+```
 
 ### Using with Claude Desktop
 
@@ -85,7 +80,48 @@ Add this server to your Claude Desktop configuration file:
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-**If you installed with uv (recommended):**
+```json
+{
+  "mcpServers": {
+    "tv-control": {
+      "command": "uvx",
+      "args": ["mcp-remote-control"],
+      "env": {
+        "HOST_IP": "192.168.1.100"
+      }
+    }
+  }
+}
+```
+
+Replace `192.168.1.100` with your TV's IP address.
+
+After updating the config, restart Claude Desktop. You can then ask Claude to control your TV:
+- "Turn on my TV and launch Netflix"
+- "Increase the volume"
+- "What apps are available on my Roku?"
+
+### Using with Claude Code
+
+Install the server using the MCP server manager in Claude Code. See the [Claude Code documentation](https://github.com/anthropics/claude-code) for details.
+
+### Using with Other MCP Clients
+
+This server uses the standard MCP protocol over stdio. See the [MCP documentation](https://modelcontextprotocol.io/docs/develop/connect-local-servers) for connecting local servers to your MCP client.
+
+### Local Development
+
+If you want to modify the server or contribute to development, clone the repository and install in editable mode:
+
+```bash
+git clone https://github.com/AaronGoldsmith/mcp-remote-control.git
+cd mcp-remote-control
+pip install -e .
+# or with uv:
+uv pip install -e .
+```
+
+To use your local development version with Claude Desktop, point to the cloned directory:
 
 ```json
 {
@@ -101,35 +137,7 @@ Add this server to your Claude Desktop configuration file:
 }
 ```
 
-**If you installed globally (with `pip install -e .` or `uv pip install -e .`):**
-
-```json
-{
-  "mcpServers": {
-    "tv-control": {
-      "command": "mcp-remote-control",
-      "env": {
-        "HOST_IP": "192.168.1.100"
-      }
-    }
-  }
-}
-```
-
-Replace `/absolute/path/to/mcp-remote-control` with the actual path to your cloned repository, and `192.168.1.100` with your TV's IP address.
-
-After updating the config, restart Claude Desktop. You can then ask Claude to control your TV:
-- "Turn on my TV and launch Netflix"
-- "Increase the volume"
-- "What apps are available on my Roku?"
-
-### Using with Claude Code
-
-Install the server using the MCP server manager in Claude Code. See the [Claude Code documentation](https://github.com/anthropics/claude-code) for details.
-
-### Using with Other MCP Clients
-
-This server uses the standard MCP protocol over stdio. See the [MCP documentation](https://modelcontextprotocol.io/docs/develop/connect-local-servers) for connecting local servers to your MCP client. 
+Replace `/absolute/path/to/mcp-remote-control` with the actual path to your cloned repository.
 
 
 ## Available Tools
