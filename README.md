@@ -85,12 +85,14 @@ Add this server to your Claude Desktop configuration file:
 **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
+**If you installed with uv (recommended):**
+
 ```json
 {
   "mcpServers": {
     "tv-control": {
-      "command": "python",
-      "args": ["/absolute/path/to/mcp-remote-control/server.py"],
+      "command": "uv",
+      "args": ["--directory", "/absolute/path/to/mcp-remote-control", "run", "mcp-remote-control"],
       "env": {
         "HOST_IP": "192.168.1.100"
       }
@@ -98,6 +100,23 @@ Add this server to your Claude Desktop configuration file:
   }
 }
 ```
+
+**If you installed globally (with `pip install -e .` or `uv pip install -e .`):**
+
+```json
+{
+  "mcpServers": {
+    "tv-control": {
+      "command": "mcp-remote-control",
+      "env": {
+        "HOST_IP": "192.168.1.100"
+      }
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/mcp-remote-control` with the actual path to your cloned repository, and `192.168.1.100` with your TV's IP address.
 
 After updating the config, restart Claude Desktop. You can then ask Claude to control your TV:
 - "Turn on my TV and launch Netflix"

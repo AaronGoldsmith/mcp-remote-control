@@ -302,9 +302,9 @@ cli = [
 ]
 
 [[package]]
-name = "mcp-tv-control"
+name = "mcp-remote-control"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "httpx" },
     { name = "mcp", extra = ["cli"] },

@@ -2,7 +2,7 @@ import os
 import httpx
 from mcp.server.fastmcp import FastMCP
 
-from roku_bridge import send_ecp_post, get_device_info as fetch_device_info
+from mcp_remote_control.roku_bridge import send_ecp_post, get_device_info as fetch_device_info
 
 mcp = FastMCP("tv_control",
                instructions="Tools for controlling a Roku TV via ECP commands over the local network.")

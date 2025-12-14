@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "mcp-remote-control"
 version = "0.1.0"
@@ -8,3 +12,12 @@ dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.23.3",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[project.scripts]
+mcp-remote-control = "mcp_remote_control.server:main"
