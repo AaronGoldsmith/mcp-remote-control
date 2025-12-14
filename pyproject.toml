@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mcp-remote-control"
-version = "0.1.0"
+version = "0.1.1"
 description = "AI-powered local network control for TVs and devices. Currently supports Roku TVs via ECP."
 readme = "README.md"
 requires-python = ">=3.12"
